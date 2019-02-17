@@ -1,40 +1,49 @@
 <div class="container text-center">
 
-<link href="https://fonts.googleapis.com/css?family=Raleway:200,100,400" rel="stylesheet" type="text/css" />
-<h1>
-  <span
+  <link href="https://fonts.googleapis.com/css?family=Raleway:200,100,400" rel="stylesheet" type="text/css" />
+
+<!-- TYPED TITLE -->
+
+  <h1>
+    <span
      class="txt-rotate"
-     data-period="1000"
+     data-period="2000"
      data-rotate='[ "Create", "Choose", "Drink it!" ]'></span>
-</h1>
-<h2>A single cocktail is all you need.</h2>
+  </h1>
+
+  <h2>All you need is a cocktail</h2>
+
+<!-- CARDS BEGINNING -->
 
   <div class="row">
     <% @cocktails.each do |cocktail| %>
     <div class="col-xs-12 col-md-4">
-      <% if cocktail.photo.url %>
       <div class="card-product"
-      style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-      url(<%= cl_image_path cocktail.photo, height: 300, width: 400, crop: :fill %>)">
-        <div class="card-product-infos">
-          <h2><%= link_to cocktail.name, cocktail_path(cocktail) %></h2>
-        </div>
+        <% if cocktail.photo.url %>
+          style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+          url(<%= cl_image_path cocktail.photo, height: 300, width: 400, crop: :fill %>)">
+            <div class="card-product-infos">
+              <h2><%= link_to cocktail.name, cocktail_path(cocktail) %></h2>
+            </div>
       </div>
-    <% else %>
+        <% else %>
       <div class="card-product"
         style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
         url('https://cdn.liquor.com/wp-content/uploads/2011/08/04122947/last-word-720-720-recipe.jpg')">
-        <div class="card-product-infos">
-          <h2><%= link_to cocktail.name, cocktail_path(cocktail) %></h2>
-        </div>
+          <div class="card-product-infos">
+            <h2><%= link_to cocktail.name, cocktail_path(cocktail) %></h2>
+          </div>
       </div>
-    <% end %>
+      <% end %>
     </div>
   <% end %>
-
   </div>
 
+<!-- CREATE COCKTAIL BUTTON -->
+
 <%= link_to "Create a cocktail", new_cocktail_path, id:"create-cocktail-button", class:"btn btn-primary" %>
+
+<!-- FOOTER -->
 
   <div class="footer">
     <div class="footer-links">
@@ -48,7 +57,6 @@
       This page is made with <i class="fas fa-heart"></i> at Le Wagon
     </div>
   </div>
-
 </div>
 
 

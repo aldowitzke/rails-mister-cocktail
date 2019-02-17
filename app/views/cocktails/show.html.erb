@@ -1,48 +1,68 @@
-<h1><%= @cocktail.name %></h1>
+<h1 class="text-center" id="cocktail-name"><%= @cocktail.name %></h1>
 
-<%= cl_image_tag @cocktail.photo, height: 300, width: 400, crop: :fill %>
+<div id="main-container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <div class="card">
+    <%= cl_image_tag @cocktail.photo, height: 315, width: 300, crop: :fill %>
+      </div>
+    </div>
 
-<ul>
-  <% @cocktail.doses.each do |dose| %>
-  <li>
-    <p>Ingredient: <%= dose.ingredient.name %></p>
-    <p>Description: <%= dose.description %></p>
-  </li>
-    <%= link_to "Delete dose", dose, method: :delete, data: { confirm: "Are you sure?"} %>
+    <div class="col-xs-12 col-md-6">
+      <div class="card">
+      <div>
+          <h3 class="text-center">Ingredients:</h3>
+        <ul class="list-inline">
+          <% @cocktail.doses.each do |dose| %>
+            <li>
+              <p><%= dose.ingredient.name %></p>
+            </li>
+            <li>
+              <p><%= dose.description %></p>
+            </li>
+            <li>
+            <%= link_to "", dose, class:"fas fa-trash-alt", method: :delete, data: { confirm: "Are you sure?"} %>
+            </li><br>
+          <% end %>
+        </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+  <!-- Form -->
+
+  <h1>Add a dose:</h1>
+
+  <%= simple_form_for [@cocktail, @dose] do |f| %>
+
+  <% if flash[:dose_errors] %>
+
+  <div class="errors-container">
+    <ul>
+      <% flash[:dose_errors].each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
   <% end %>
-</ul>
+
+  <div class="form-inputs">
+    <%= f.association :ingredient, collection: Ingredient.order('name ASC') %>
+    <%= f.input :description %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
 
 
-<!-- Form -->
+  <% end %>
 
-<h1>Add a dose:</h1>
+  <p><%= link_to "Go back", cocktails_path %> |
+    <%= link_to "Delete cocktail", @cocktail, method: :delete, data: { confirm: "Are you sure?" } %></p>
 
-<%= simple_form_for [@cocktail, @dose] do |f| %>
-
-<% if flash[:dose_errors] %>
-
-<div class="errors-container">
-  <ul>
-    <% flash[:dose_errors].each do |message| %>
-    <li><%= message %></li>
-    <% end %>
-  </ul>
 </div>
-<% end %>
-
-<div class="form-inputs">
-  <%= f.association :ingredient, collection: Ingredient.order('name ASC') %>
-  <%= f.input :description %>
-</div>
-
-<div class="form-actions">
-  <%= f.button :submit %>
-</div>
-
-
-<% end %>
-
-<p><%= link_to "Go back", cocktails_path %> |
-  <%= link_to "Delete cocktail", @cocktail, method: :delete, data: { confirm: "Are you sure?" } %></p>
-
 
