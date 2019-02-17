@@ -9,7 +9,7 @@
     </div>
 
     <div class="col-xs-12 col-md-6">
-      <div class="card">
+      <div class="card ingredients">
       <div>
           <h3 class="text-center">Ingredients:</h3>
         <ul class="list-inline">
@@ -21,7 +21,7 @@
               <p><%= dose.description %></p>
             </li>
             <li>
-            <%= link_to "", dose, class:"fas fa-trash-alt", method: :delete, data: { confirm: "Are you sure?"} %>
+            <%= link_to "", dose, class:"fas fa-trash-alt", method: :delete, data: { confirm: "Are you sure??"} %>
             </li><br>
           <% end %>
         </ul>
@@ -34,7 +34,7 @@
 
   <!-- Form -->
 
-  <h1>Add a dose:</h1>
+  <h1 class="text-center">Add a dose:</h1>
 
   <%= simple_form_for [@cocktail, @dose] do |f| %>
 

@@ -5,11 +5,11 @@
 
 #main-container {
   display: flex;
-}
-
-.card {
-  margin-left: 130px;
   text-align: center;
+  justify-content: center;
 }
 
 
+.ingredients {
+  width: 400px;
+}
